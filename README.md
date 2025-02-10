@@ -21,7 +21,6 @@ pip install numpy plotly scipy notebook
 ## File Structure
 - `3d_shape_points_data.npz` - The input file containing point cloud data.
 - `3d_shape_reconstruction.ipynb` - Jupyter Notebook for loading, analyzing, and visualizing the point cloud data.
-- `README.md` - This documentation file.
 
 ## Usage
 1. Place the `3d_shape_points_data.npz` file in the working directory.
