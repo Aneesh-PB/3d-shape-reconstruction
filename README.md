@@ -62,9 +62,4 @@ Two 3D scatter plots will be displayed:
 2. **Reconstructed Frustum Shape** (Blue)
 
 ## Notes
-- Ensure `3d_shape_points_data.npz` is correctly formatted with a key `"points"` containing a `(N,3)` NumPy array.
 - The script assumes the shape resembles a frustum; results may vary for irregular geometries.
-
-## License
-This project is open-source and can be freely used and modified.
-
