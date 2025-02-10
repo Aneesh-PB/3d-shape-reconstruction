@@ -1,57 +1,70 @@
-# 3D Shape Analysis and Reconstruction
+# 3D Shape Reconstruction from Point Cloud
 
 ## Overview
-This project analyzes a 3D point cloud representing a deformed component, performs Principal Component Analysis (PCA) to determine its principal axes, and reconstructs the shape as a frustum. The analysis includes radius variation along the height and visualization of the original and reconstructed shape using Plotly.
+This project reconstructs the 3D shape of a deformed component using point cloud data. The reconstruction process involves analyzing the radius variation along the height, fitting a linear model to estimate the frustum shape, and visualizing the original and corrected shapes using Plotly.
+
+## Features
+- Loads 3D point cloud data from a `.npz` file.
+- Visualizes the original deformed shape in a 3D scatter plot.
+- Computes radius variations at different height levels.
+- Fits a linear model to approximate the shape as a frustum.
+- Reconstructs the shape using cylindrical coordinate transformations.
+- Displays both the original and reconstructed shapes using Plotly.
 
 ## Dependencies
-Ensure you have the following Python libraries installed before running the script:
-- `numpy`
-- `plotly`
-- `scipy`
-- `scikit-learn`
+Ensure you have the following Python libraries installed:
 
-You can install missing dependencies using:
-```sh
+```bash
 pip install numpy plotly scipy scikit-learn
 ```
 
-## Files
-- **3d_shape_points_data.npz**: Input file containing the 3D point cloud data.
-- **script.py**: Python script to analyze and visualize the data.
+## File Structure
+- `3d_shape_points_data.npz` - The input file containing point cloud data.
+- `main.py` - The script for loading, analyzing, and visualizing the point cloud data.
+- `README.md` - This documentation file.
 
-## Code Workflow
-1. **Load the Point Cloud Data**
-   - Reads the `.npz` file and extracts the 3D points.
+## Usage
+1. Place the `3d_shape_points_data.npz` file in the working directory.
+2. Run the script:
 
-2. **Visualize the Original 3D Point Cloud**
-   - Uses Plotly to create a scatter plot of the point cloud.
-
-3. **Perform Principal Component Analysis (PCA)**
-   - Determines the principal axes of the 3D shape.
-
-4. **Analyze Radius Variation Along the Height**
-   - Computes radius at different height levels.
-   - Fits a linear regression model to estimate the frustum shape.
-
-5. **Reconstruct the Frustum Shape**
-   - Computes corrected radii based on the fitted model.
-   - Converts points to cylindrical coordinates for shape correction.
-
-6. **Visualize the Reconstructed Shape**
-   - Displays both the original deformed shape and the reconstructed frustum.
-
-## How to Run
-1. Place `3d_shape_points_data.npz` in the same directory as the script.
-2. Run the script using:
-   ```sh
-   python script.py
+   ```bash
+   python main.py
    ```
-3. The output will display interactive 3D visualizations in your browser.
 
-## Expected Output
-- A 3D scatter plot of the original point cloud.
-- A 3D scatter plot comparing the original deformed shape and the reconstructed frustum.
+3. The script will generate two 3D scatter plots:
+   - The **original deformed shape** (red points)
+   - The **reconstructed frustum shape** (blue points)
 
-## Contact
-For any questions or issues, feel free to reach out.
+## Code Explanation
+### 1. Load Point Cloud Data
+The script loads a `.npz` file and extracts the 3D point coordinates.
+
+### 2. Visualize Original Point Cloud
+A 3D scatter plot is generated to display the original deformed shape.
+
+### 3. Radius Computation and Binning
+- The radius of each point is calculated as `sqrt(x^2 + y^2)`.
+- The height (`z`) is divided into bins, and the average radius for each bin is computed.
+
+### 4. Frustum Approximation
+- A linear regression model fits a line to the **radius vs height** data.
+- This estimated frustum equation is used to compute corrected radii.
+
+### 5. Shape Correction
+- The corrected radii are converted back to Cartesian coordinates (`x, y`).
+
+### 6. Visualization
+- The original and reconstructed shapes are plotted in 3D using Plotly.
+
+## Example Output
+Two 3D scatter plots will be displayed:
+1. **Original Deformed Shape** (Red)
+2. **Reconstructed Frustum Shape** (Blue)
+
+## Notes
+- Ensure `3d_shape_points_data.npz` is correctly formatted with a key `"points"` containing a `(N,3)` NumPy array.
+- The script assumes the shape resembles a frustum; results may vary for irregular geometries.
+
+## License
+This project is open-source and can be freely used and modified.
 
