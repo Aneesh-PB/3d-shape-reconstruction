@@ -15,7 +15,7 @@ This project reconstructs the 3D shape of a deformed component using point cloud
 Ensure you have the following Python libraries installed:
 
 ```bash
-pip install numpy plotly scipy scikit-learn
+pip install numpy plotly scipy
 ```
 
 ## File Structure
